@@ -8,42 +8,42 @@
 
 - name: install apache server
   yum:
-    name: {{webserver_package}}
+    name: "{{ webserver_package }}"
     state: latest
 
 - name: change dir to the html dir
   shell:
   args:
-    chdir: {{dest}}
+    chdir: "{{ dest }}"
 
 - name: download web file from github
   get_url:
     url: https://github.com/azeezsalu/jupiter/archive/refs/heads/main.zip
-    dest: {{dest}}
+    dest: "{{ dest }}"
 
 - name: unzip the zipfolder
   ansible.builtin.unarchive:
-    src: {{dest}}/jupiter-main.zip
-    dest: {{dest}}
+    src: {{ dest }}jupiter-main.zip
+    dest: "{{ dest }}"
     remote_src: yes
       
 - name: copy webfiles from the jupiter-main directory to the html directory
   copy: 
-    src: {{dest}}/jupiter-main
-    dest: {{dest}}
+    src: {{ dest }}jupiter-main
+    dest: "{{ dest }}"
     remote_src: yes
 
 - name: remove the jupiter-main directory
   file: 
-    path: {{dest}}/jupiter-main
+    path: {{ dest }}jupiter-main
     state: absent
 
 - name: remove the jupiter-main.zip folder
   file: 
-    path: {{dest}}/jupiter-main.zip
+    path: {{ dest }}/jupiter-main.zip
     state: absent
 - name: start apache server, if not started
   ansible.builtin.service:
     enabled: yes
-    name: {{webserver_package}}
+    name: "{{ webserver_package }}"
     state: started
