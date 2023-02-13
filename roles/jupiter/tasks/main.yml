@@ -21,24 +21,24 @@
 
 - name: unzip the zipfolder
   ansible.builtin.unarchive:
-    src: /var/www/html/jupiter-main.zip
+    src: /var/www/html/{{ jupiter }}.zip
     dest: /var/www/html/
     remote_src: yes
       
 - name: copy webfiles from the jupiter-main directory to the html directory
   copy: 
-    src: /var/www/html/jupiter-main/
+    src: /var/www/html/{{ jupiter }}/
     dest: /var/www/html/
     remote_src: yes
 
 - name: remove the jupiter-main directory
   file: 
-    path: /var/www/html/jupiter-main
+    path: /var/www/html/{{ jupiter }}
     state: absent
 
 - name: remove the jupiter-main.zip folder
   file: 
-    path: /var/www/html/jupiter-main.zip
+    path: /var/www/html/{{ jupiter }}.zip
     state: absent
 - name: start apache server, if not started
   ansible.builtin.service:
