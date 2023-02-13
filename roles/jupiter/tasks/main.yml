@@ -14,28 +14,28 @@
 - name: change dir to the html dir
   shell:
   args:
-    cmd: cd "{{ dest }}"
+    cmd: cd {{ dest }}
 
 - name: download web file from github
   get_url:
     url: https://github.com/azeezsalu/jupiter/archive/refs/heads/main.zip
-    dest: "{{ dest }}"
+    dest: {{ dest }}
 
 - name: unzip the zipfolder
   ansible.builtin.unarchive:
     src: /var/www/html/jupiter-main.zip
-    dest: "{{ dest }}"
+    dest: {{ dest }}
     remote_src: yes
       
 - name: copy webfiles from the jupiter-main directory to the html directory
   copy: 
-    src: "{{ src }}"
-    dest: "{{ dest }}"
+    src: {{ src }}
+    dest: {{ dest }}
     remote_src: yes
 
 - name: remove the jupiter-main directory
   file: 
-    path: "{{ src }}"
+    path: {{ src }}
     state: absent
 
 - name: remove the jupiter-main.zip folder
