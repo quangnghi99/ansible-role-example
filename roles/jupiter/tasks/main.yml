@@ -12,7 +12,9 @@
     state: latest
 
 - name: change dir to the html dir
-    shell: cd {{dest}}
+  shell:
+  args:
+    chdir: {{dest}}
 
 - name: download web file from github
   get_url:
