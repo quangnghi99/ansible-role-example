@@ -14,7 +14,7 @@
 - name: change dir to the html dir
   shell:
   args:
-    chdir: "{{ dest }}"
+    cmd: cd "{{ dest }}"
 
 - name: download web file from github
   get_url:
