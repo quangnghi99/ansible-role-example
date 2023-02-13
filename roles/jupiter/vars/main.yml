@@ -1,4 +1,4 @@
 ---
 # vars file for __template__
-dest: /var/www/html
+dest: /var/www/html/
 webserver_package: httpd
