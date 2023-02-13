@@ -1,5 +1,4 @@
 ---
 # vars file for __template__
-src: /var/www/html/jupiter-main
-dest: /var/www/html/
+jupiter: jupiter-main
 webserver_package: httpd
